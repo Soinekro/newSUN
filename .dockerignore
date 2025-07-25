@@ -1,0 +1,57 @@
+# Archivos de Git
+.git/
+.gitignore
+.gitattributes
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+.vscode/
+
+# Archivos de compilación y salida
+bin/
+obj/
+out/
+TestResults/
+
+# Archivos de paquetes NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración local
+appsettings.local.json
+appsettings.*.local.json
+
+# Archivos de IDE
+*.swp
+*.swo
+*~
+
+# Archivos de Node.js (si usas herramientas frontend)
+node_modules/
+npm-debug.log*
+
+# Archivos Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Archivos de documentación que no son necesarios en el contenedor
+README.md
+*.md
+
+# Archivos de licencia
+LICENSE*
