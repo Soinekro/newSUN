@@ -11,8 +11,7 @@ COPY . .
 WORKDIR "/src/RRHHService.API"
 
 # Compilar y publicar la aplicación
-RUN dotnet build "RRHHService.API.csproj" -c Release -o /app/build
-RUN dotnet publish "RRHHService.API.csproj" -c Release -o /app/publish --no-build
+RUN dotnet publish "RRHHService.API.csproj" -c Release -o /app/publish
 
 # Usar la imagen runtime más ligera para ejecutar
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
@@ -21,8 +20,12 @@ WORKDIR /app
 # Copiar los archivos publicados desde la etapa de build
 COPY --from=build /app/publish .
 
-# Exponer el puerto (ASP.NET Core usa 8080 por defecto en contenedores)
-EXPOSE 8080
+# Configurar variables de entorno para ASP.NET Core
+ENV ASPNETCORE_URLS=http://+:5000
+ENV ASPNETCORE_ENVIRONMENT=Production
+
+# Exponer el puerto
+EXPOSE 5000
 
 # Punto de entrada
 ENTRYPOINT ["dotnet", "RRHHService.API.dll"]
