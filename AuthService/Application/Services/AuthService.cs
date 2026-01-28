@@ -52,10 +52,7 @@ public class AuthService : IAuthService
         if (request == null)
             return new BaseResponse<RegisterResponse>(false, "La solicitud no puede ser nula.");
 
-        var username = request.Username?.Trim();
-        if (string.IsNullOrWhiteSpace(username))
-            return new BaseResponse<RegisterResponse>(false, "El username es obligatorio.");
-
+        var username = request.Username.Trim();
         // Validar unicidad
         if (await _userRepository.ExistsByUsernameAsync(username))
             return new BaseResponse<RegisterResponse>(false, "El username ya está registrado.");

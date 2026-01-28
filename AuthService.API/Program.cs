@@ -1,3 +1,5 @@
+using Api.Common.Response;
+using AuthService.API.Filters;
 using AuthService.Application.Interfaces;
 using AuthService.Domain.Interfaces;
 using AuthService.Infrastructure.Persistence;
@@ -5,6 +7,7 @@ using AuthService.Infrastructure.Repositories;
 using AuthService.Infrastructure.Security;
 using AuthService.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -16,6 +19,12 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 
+});
+
+// Deshabilitar el filtro automático de ModelState y usar ValidationFilter
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
 });
 
 // Repositorios (Infrastructure)
@@ -56,7 +65,13 @@ if (!string.IsNullOrEmpty(key))
     });
 }
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    // Filtro global para respuestas BaseResponse
+    options.Filters.Add<ApiResponseFilter>();
+    // Filtro global para errores de validación
+    options.Filters.Add<ValidationFilter>();
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

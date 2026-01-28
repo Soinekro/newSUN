@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using AuthService.Application.DTOs;
 using AuthService.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,7 @@ public class AuthController : ControllerBase
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    public async Task<IActionResult> Login([FromBody, Required] LoginRequest request)
     {
         var response = await _authService.LoginAsync(request);
 
@@ -32,7 +33,7 @@ public class AuthController : ControllerBase
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+    public async Task<IActionResult> Register([FromBody, Required] RegisterRequest request)
     {
         var response = await _authService.RegisterAsync(request);
 

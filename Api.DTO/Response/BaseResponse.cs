@@ -34,6 +34,17 @@
         }
 
         /// <summary>
+        /// Constructor para inicializar una respuesta con errores y opcionalmente código de estado.
+        /// </summary>
+        public BaseResponse(bool isSuccess, string message, System.Collections.Generic.IDictionary<string, string[]>? errors = null, int statusCode =0)
+        {
+            IsSuccess = isSuccess;
+            Message = message;
+            Errors = errors;
+            StatusCode = statusCode;
+        }
+
+        /// <summary>
         /// Obtiene o establece un valor que indica si la operación fue exitosa.
         /// </summary>
         public bool IsSuccess { get; set; }
@@ -42,6 +53,16 @@
         /// Obtiene o establece un mensaje descriptivo sobre el resultado.
         /// </summary>
         public string Message { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Código de estado HTTP sugerido para el cliente (opcional).
+        /// </summary>
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Errores de validación u otros errores detallados por campo.
+        /// </summary>
+        public System.Collections.Generic.IDictionary<string, string[]>? Errors { get; set; }
 
         /// <summary>
         /// Obtiene o establece los datos resultantes de la operación.
@@ -65,5 +86,11 @@
         /// <param name="isSuccess">Indica si la operación fue exitosa.</param>
         /// <param name="message">Un mensaje descriptivo sobre el resultado de la operación.</param>
         public BaseResponse(bool isSuccess, string message) : base(isSuccess, message) { }
+
+        /// <summary>
+        /// Constructor para inicializar una respuesta con errores y código de estado.
+        /// </summary>
+        public BaseResponse(bool isSuccess, string message, System.Collections.Generic.IDictionary<string, string[]>? errors = null, int statusCode =0)
+        : base(isSuccess, message, errors, statusCode) { }
     }
 }
