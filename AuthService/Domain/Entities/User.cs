@@ -24,6 +24,6 @@ public class User : BaseAuditableClass
     /// </summary>
     public string PasswordHash { get; set; } = string.Empty;
 
-    public string Email { get; set; } = string.Empty;
+    //public string Email { get; set; } = string.Empty;
 
 }

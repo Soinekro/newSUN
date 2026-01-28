@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Api.Common.Validates;
 
 namespace AuthService.Application.DTOs;
 
@@ -11,12 +12,14 @@ public class LoginRequest
     /// <summary>
     /// Nombre de usuario. Es obligatorio.
     /// </summary>
-    [Required(ErrorMessage = "El nombre de usuario es obligatorio.")]
+    [Display(Name = "nombre de usuario")]
+    [RequiredEx]
     public string Username { get; set; } = string.Empty;
 
     /// <summary>
     /// Contraseña del usuario. Es obligatoria.
     /// </summary>
-    [Required(ErrorMessage = "La contraseña es obligatoria.")]
+    [Display(Name = "contraseña")]
+    [RequiredEx]
     public string Password { get; set; } = string.Empty;
 }
