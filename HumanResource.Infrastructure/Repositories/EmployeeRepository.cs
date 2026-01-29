@@ -3,9 +3,9 @@ using HumanResource.Domain.Interfaces;
 using HumanResource.Domain.Entities;
 
 namespace HumanResource.Infrastructure.Repositories;
-public class EmployeeRepository(EmployeeDbContext context) : IEmployeeRepository
+public class EmployeeRepository(HumanResourceDbContext context) : IEmployeeRepository
 {
-    private readonly EmployeeDbContext _context = context;
+    private readonly HumanResourceDbContext _context = context;
 
     public async Task<Employee> CreateAsync(Employee employee)
     {

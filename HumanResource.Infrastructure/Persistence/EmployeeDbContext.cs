@@ -2,14 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace HumanResource.Infrastructure.Persistence;
-public partial class EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : DbContext(options)
+
+public partial class HumanResourceDbContext
 {
-    public DbSet<Employee> Employees => Set<Employee>();
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    partial void ConfigureEmployee(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Employee>(b =>
         {
             b.ToTable("HrEmployees");
@@ -19,7 +16,10 @@ public partial class EmployeeDbContext(DbContextOptions<EmployeeDbContext> optio
             b.Property(x => x.Email).HasMaxLength(150).IsRequired();
             b.Property(x => x.PhoneNumber).HasMaxLength(20);
             b.Property(x => x.DateOfBirth).IsRequired();
-            b.HasMany<Contract>().WithOne(c => c.Employee).HasForeignKey(c => c.EmployeeId);
+
+            b.HasMany(x => x.Contracts)
+             .WithOne(c => c.Employee)
+             .HasForeignKey(c => c.EmployeeId);
         });
     }
 }

@@ -1,3 +1,4 @@
+using CommonClass.Response;
 using HumanResource.Aplication.Interfaces;
 using HumanResource.Aplication.Services;
 using HumanResource.Domain.Interfaces;
@@ -10,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 using System.Text;
-using CommonClass.Response;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,9 +48,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // 4. DbContext de HumanResource
-builder.Services.AddDbContext<EmployeeDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("HR_Connection")));
-builder.Services.AddDbContext<ContractDbContext>(options =>
+builder.Services.AddDbContext<HumanResourceDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("HR_Connection")));
 
 // 5. Inyección de Dependencias (DI) para HumanResource

@@ -3,9 +3,9 @@ using HumanResource.Domain.Interfaces;
 using HumanResource.Infrastructure.Persistence;
 
 namespace HumanResource.Infrastructure.Repositories;
-public class ContractRepository(ContractDbContext context) : IContractRepository
+public class ContractRepository(HumanResourceDbContext context) : IContractRepository
 {
-    private readonly ContractDbContext _context = context;
+    private readonly HumanResourceDbContext _context = context;
 
     public async Task<Contract> CreateAsync(Contract contract)
     {
