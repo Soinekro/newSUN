@@ -11,14 +11,9 @@ namespace AuthService.Infrastructure.Security;
 /// <summary>
 /// Servicio para generar tokens JWT.
 /// </summary>
-public class JwtTokenService : IJwtTokenService
+public class JwtTokenService(IOptions<JwtOptions> options) : IJwtTokenService
 {
-    private readonly JwtOptions _options;
-
-    public JwtTokenService(IOptions<JwtOptions> options)
-    {
-        _options = options.Value;
-    }
+    private readonly JwtOptions _options = options.Value;
 
     public string GenerateToken(User user)
     {

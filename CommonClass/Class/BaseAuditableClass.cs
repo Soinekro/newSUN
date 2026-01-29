@@ -1,4 +1,4 @@
-﻿namespace Api.Common.Class
+﻿namespace CommonClass.Class
 {
     public abstract class BaseAuditableClass
     {

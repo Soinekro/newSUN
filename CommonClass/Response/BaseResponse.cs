@@ -1,4 +1,4 @@
-﻿namespace Api.Common.Response
+﻿namespace CommonClass.Response
 {
     /// <summary>
     /// Representa una respuesta base genérica para todas las respuestas de la API.
@@ -36,7 +36,7 @@
         /// <summary>
         /// Constructor para inicializar una respuesta con errores y opcionalmente código de estado.
         /// </summary>
-        public BaseResponse(bool isSuccess, string message, System.Collections.Generic.IDictionary<string, string[]>? errors = null, int statusCode =0)
+        public BaseResponse(bool isSuccess, string message, IDictionary<string, string[]>? errors = null, int statusCode =0)
         {
             IsSuccess = isSuccess;
             Message = message;
@@ -62,7 +62,7 @@
         /// <summary>
         /// Errores de validación u otros errores detallados por campo.
         /// </summary>
-        public System.Collections.Generic.IDictionary<string, string[]>? Errors { get; set; }
+        public IDictionary<string, string[]>? Errors { get; set; }
 
         /// <summary>
         /// Obtiene o establece los datos resultantes de la operación.
@@ -90,7 +90,7 @@
         /// <summary>
         /// Constructor para inicializar una respuesta con errores y código de estado.
         /// </summary>
-        public BaseResponse(bool isSuccess, string message, System.Collections.Generic.IDictionary<string, string[]>? errors = null, int statusCode =0)
+        public BaseResponse(bool isSuccess, string message, IDictionary<string, string[]>? errors = null, int statusCode =0)
         : base(isSuccess, message, errors, statusCode) { }
     }
 }

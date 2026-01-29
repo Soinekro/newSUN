@@ -1,13 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Api.Common.Validates;
+namespace CommonClass.Validates;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-public class MinLengthExAttribute : MinLengthAttribute
+public class RequiredExAttribute : RequiredAttribute
 {
-    public MinLengthExAttribute(int length) : base(length)
+    public RequiredExAttribute()
     {
-        ErrorMessage = ValidationMessages.MinLength;
+        ErrorMessage = ValidationMessages.Required;
     }
 
     public override string FormatErrorMessage(string name)

@@ -1,7 +1,5 @@
 ﻿using AuthService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace AuthService.Infrastructure.Persistence;
 
@@ -9,10 +7,8 @@ namespace AuthService.Infrastructure.Persistence;
 /// DbContext del microservicio de autenticación.
 /// Contiene el mapeo de entidades del AuthService.
 /// </summary>
-public class AuthDbContext : DbContext
+public class SecUserDbContext(DbContextOptions<SecUserDbContext> options) : DbContext(options)
 {
-    public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options) { }
-
     public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

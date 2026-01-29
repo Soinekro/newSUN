@@ -1,4 +1,4 @@
-namespace Api.Common.Validates;
+namespace CommonClass.Validates;
 
 public static class ValidationMessages
 {

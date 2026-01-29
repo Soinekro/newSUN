@@ -8,14 +8,9 @@ namespace AuthService.Infrastructure.Repositories;
 /// <summary>
 /// Repositorio de usuarios usando EF Core.
 /// </summary>
-public class UserRepository : IUserRepository
+public class UserRepository(SecUserDbContext db) : IUserRepository
 {
-    private readonly AuthDbContext _db;
-
-    public UserRepository(AuthDbContext db)
-    {
-        _db = db;
-    }
+    private readonly SecUserDbContext _db = db;
 
     public Task<User?> GetByUsernameAsync(string username)
         => _db.Users.AsNoTracking().SingleOrDefaultAsync(u => u.Username == username);

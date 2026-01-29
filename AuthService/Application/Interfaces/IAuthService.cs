@@ -1,5 +1,5 @@
-using Api.Common.Response;
 using AuthService.Application.DTOs;
+using CommonClass.Response;
 
 namespace AuthService.Application.Interfaces;
 

@@ -1,4 +1,4 @@
-using Api.Common.Validates;
+using CommonClass.Validates;
 using System.ComponentModel.DataAnnotations;
 
 namespace AuthService.Application.DTOs;

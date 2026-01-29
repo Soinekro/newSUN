@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AuthService.Infrastructure.Migrations
 {
-    [DbContext(typeof(AuthDbContext))]
+    [DbContext(typeof(SecUserDbContext))]
     [Migration("20260127162246_CreateSecUsersTable")]
     partial class CreateSecUsersTable
     {

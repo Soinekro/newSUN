@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using Api.Common.Validates;
+using CommonClass.Validates;
 
 namespace AuthService.Application.DTOs;
 

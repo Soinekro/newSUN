@@ -1,4 +1,3 @@
-using Api.Common.Response;
 using AuthService.API.Filters;
 using AuthService.Application.Interfaces;
 using AuthService.Domain.Interfaces;
@@ -15,7 +14,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // DbContext (EF Core)
-builder.Services.AddDbContext<AuthDbContext>(options =>
+builder.Services.AddDbContext<SecUserDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 

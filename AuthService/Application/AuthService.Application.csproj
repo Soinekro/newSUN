@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Api.DTO\Api.Common.csproj" />
     <ProjectReference Include="..\Domain\AuthService.Domain.csproj" />
   </ItemGroup>
 

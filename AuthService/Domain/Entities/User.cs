@@ -1,4 +1,4 @@
-using Api.Common.Class;
+using CommonClass.Class;
 
 namespace AuthService.Domain.Entities;
 
