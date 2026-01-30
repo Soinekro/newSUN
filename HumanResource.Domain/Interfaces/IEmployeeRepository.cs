@@ -5,4 +5,5 @@ namespace HumanResource.Domain.Interfaces;
 public interface IEmployeeRepository
 {
     Task<Employee> CreateAsync(Employee contract);
+    Task<Employee?> GetEmployee(int employeeId);
 }

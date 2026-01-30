@@ -7,5 +7,6 @@ namespace HumanResource.Aplication.Interfaces
     public partial interface IContractService
     {
         Task<BaseResponse<ContractResponse>> CreateAsync(ContractRequest request);
+        Task<BaseResponse<ContractResponse>> GetContract(int contractId);
     }
 }

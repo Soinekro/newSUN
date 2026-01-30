@@ -7,5 +7,6 @@ namespace HumanResource.Aplication.Interfaces
     public partial interface IEmployeeService
     {
         Task<BaseResponse<EmployeeResponse>> CreateAsync(EmployeeRequest request);
+        Task<BaseResponse<EmployeeResponse>> GetEmployee(int EmployeeId);
     }
 }

@@ -9,5 +9,5 @@ public class Employee : BaseAuditableClass
     public DateTime DateOfBirth { get; set; }
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+    public ICollection<Contract> Contracts { get; set; } = [];
 }

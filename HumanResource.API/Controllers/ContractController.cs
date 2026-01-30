@@ -21,5 +21,17 @@ namespace HumanResource.API.Controllers
             }
             return BadRequest(response);
         }
+
+        [HttpGet("{contractId}")]
+        [Authorize]
+        public async Task<IActionResult> GetContract([FromRoute] int contractId)
+        {
+            var response = await _contractService.GetContract(contractId);
+            if (response.IsSuccess)
+            {
+                return Ok(response);
+            }
+            return BadRequest(response);
+        }
     }
 }

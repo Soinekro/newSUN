@@ -40,4 +40,40 @@ public class EmployeeService(IEmployeeRepository employeeRepository) : IEmployee
             Data = response
         };
     }
+
+    public async Task<BaseResponse<EmployeeResponse>> GetEmployee(int employeeId)
+    {
+        Employee? employee = await _employeeRepository.GetEmployee(employeeId);
+        if (employee == null)
+        {
+            return new BaseResponse<EmployeeResponse>
+            {
+                IsSuccess = false,
+                Message = "Employee not found.",
+                StatusCode = 404,
+                Data = null
+            };
+        }
+        var response = new EmployeeResponse
+        {
+            EmployeeId = employee.EmployeeId,
+            FirstName = employee.FirstName,
+            LastName = employee.LastName,
+            Email = employee.Email,
+            Phone = employee.PhoneNumber,
+            Contracts = employee.Contracts?.Select(c => new ContractResponse
+            {
+                CtrId = c.CtrId,
+                StartDate = c.StartDate,
+                EndDate = c.EndDate
+            }).ToList() ?? new List<ContractResponse>()
+        };
+        return new BaseResponse<EmployeeResponse>
+        {
+            IsSuccess = true,
+            Message = "Employee retrieved successfully.",
+            StatusCode = 200,
+            Data = response
+        };
+    }
 }

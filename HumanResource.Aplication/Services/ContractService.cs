@@ -35,4 +35,39 @@ public class ContractService(IContractRepository contractRepository) : IContract
         };
 
     }
+
+    public async Task<BaseResponse<ContractResponse>> GetContract(int contractId)
+    {
+        Contract? contract = await _contractRepository.GetContract(contractId);
+        if (contract == null)
+        {
+            return new BaseResponse<ContractResponse>
+            {
+                IsSuccess = false,
+                Message = "Contract not found.",
+                StatusCode = 404,
+                Data = null
+            };
+        }
+        var response = new ContractResponse
+        {
+            CtrId = contract.CtrId,
+            StartDate = contract.StartDate,
+            EndDate = contract.EndDate,
+            Employee = new EmployeeResponse
+            {
+                EmployeeId = contract.Employee.EmployeeId,
+                FirstName = contract.Employee.FirstName,
+                LastName = contract.Employee.LastName,
+                Email = contract.Employee.Email
+            }
+        };
+        return new BaseResponse<ContractResponse>
+        {
+            IsSuccess = true,
+            Message = "Contract retrieved successfully.",
+            StatusCode = 200,
+            Data = response
+        };
+    }
 }

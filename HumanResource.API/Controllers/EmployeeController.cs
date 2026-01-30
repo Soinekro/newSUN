@@ -26,4 +26,16 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
 
     }
 
+    [HttpGet("{employeeId}")]
+    [Authorize]
+    public async Task<IActionResult> GetEmployee([FromRoute] int employeeId)
+    {
+        var response = await _employeeService.GetEmployee(employeeId);
+        if (response.IsSuccess)
+        {
+            return Ok(response);
+        }
+        return BadRequest(response);
+    }
+
 }
