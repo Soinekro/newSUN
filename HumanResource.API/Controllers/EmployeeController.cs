@@ -1,4 +1,5 @@
-﻿using HumanResource.Aplication.DTOs.Request;
+﻿using CommonClass.Querying;
+using HumanResource.Aplication.DTOs.Request;
 using HumanResource.Aplication.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,14 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
 {
     private readonly IEmployeeService _employeeService = employeeService;
     // GET: EmployeeController/Create
+
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> GetAll([FromQuery] ApiQuerySpec query)
+    {
+        var response = await _employeeService.GetAllAsync(query);
+        return Ok(response);
+    }
 
     [HttpPost("create")]
     [Authorize]
@@ -28,9 +37,9 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
 
     [HttpGet("{employeeId}")]
     [Authorize]
-    public async Task<IActionResult> GetEmployee([FromRoute] int employeeId)
+    public async Task<IActionResult> GetEmployee([FromRoute] int employeeId, [FromQuery] ApiQuerySpec query)
     {
-        var response = await _employeeService.GetEmployee(employeeId);
+        var response = await _employeeService.GetEmployee(employeeId, query);
         if (response.IsSuccess)
         {
             return Ok(response);

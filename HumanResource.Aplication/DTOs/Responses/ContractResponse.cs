@@ -5,5 +5,5 @@ public class ContractResponse
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; } = DateTime.Now;
 
-    public EmployeeResponse Employee { get; set; } = null!;
+    public EmployeeResponse? Employee { get; set; } = null;
 }

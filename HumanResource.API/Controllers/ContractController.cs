@@ -1,3 +1,4 @@
+using CommonClass.Querying;
 using HumanResource.Aplication.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,9 @@ namespace HumanResource.API.Controllers
 
         [HttpGet("{contractId}")]
         [Authorize]
-        public async Task<IActionResult> GetContract([FromRoute] int contractId)
+        public async Task<IActionResult> GetContract([FromRoute] int contractId, [FromQuery] ApiQuerySpec query)
         {
-            var response = await _contractService.GetContract(contractId);
+            var response = await _contractService.GetContract(contractId,query);
             if (response.IsSuccess)
             {
                 return Ok(response);

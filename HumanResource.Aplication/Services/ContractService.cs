@@ -1,4 +1,6 @@
-﻿using CommonClass.Response;
+﻿using CommonClass.Querying;
+using CommonClass.Response;
+using HumanResource.Aplication.DTOs.Mappers;
 using HumanResource.Aplication.DTOs.Request;
 using HumanResource.Aplication.DTOs.Responses;
 using HumanResource.Aplication.Interfaces;
@@ -20,12 +22,9 @@ public class ContractService(IContractRepository contractRepository) : IContract
             Salary = request.Salary
         };
         Contract contract = await _contractRepository.CreateAsync(contractModel);
-        var response = new ContractResponse
-        {
-            CtrId = contract.CtrId,
-            StartDate = contract.StartDate,
-            EndDate = contract.EndDate,
-        };
+
+        var response = contract.ToResponse();
+
         return new BaseResponse<ContractResponse>
         {
             IsSuccess = true,
@@ -36,9 +35,9 @@ public class ContractService(IContractRepository contractRepository) : IContract
 
     }
 
-    public async Task<BaseResponse<ContractResponse>> GetContract(int contractId)
+    public async Task<BaseResponse<ContractResponse>> GetContract(int contractId, ApiQuerySpec query)
     {
-        Contract? contract = await _contractRepository.GetContract(contractId);
+        Contract? contract = await _contractRepository.GetContract(contractId, query);
         if (contract == null)
         {
             return new BaseResponse<ContractResponse>
@@ -49,19 +48,7 @@ public class ContractService(IContractRepository contractRepository) : IContract
                 Data = null
             };
         }
-        var response = new ContractResponse
-        {
-            CtrId = contract.CtrId,
-            StartDate = contract.StartDate,
-            EndDate = contract.EndDate,
-            Employee = new EmployeeResponse
-            {
-                EmployeeId = contract.Employee.EmployeeId,
-                FirstName = contract.Employee.FirstName,
-                LastName = contract.Employee.LastName,
-                Email = contract.Employee.Email
-            }
-        };
+        var response = contract.ToResponse(query);
         return new BaseResponse<ContractResponse>
         {
             IsSuccess = true,
