@@ -1,3 +1,4 @@
+using CommonClass.Filters;
 using CommonClass.Response;
 using HumanResource.Aplication.Interfaces;
 using HumanResource.Aplication.Services;
@@ -60,23 +61,49 @@ builder.Services.AddScoped<IContractService, ContractService>();
 // 6. Autenticación JWT (este servicio CONSUME tokens, no los crea)
 // La configuración es la misma que en AuthService, porque debe confiar en el mismo emisor.
 var jwtSection = builder.Configuration.GetSection("Jwt");
-builder.Services.AddAuthentication(options =>
+var issuer = jwtSection["Issuer"];
+var audience = jwtSection["Audience"];
+var key = jwtSection["Key"];
+
+if (string.IsNullOrWhiteSpace(key))
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+    throw new InvalidOperationException("Jwt:Key no está configurada.");
+}
+
+builder.Services
+    .AddAuthentication(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSection["Issuer"],
-        ValidAudience = jwtSection["Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSection["Key"]))
-    };
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = issuer,
+            ValidAudience = audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+            ClockSkew = TimeSpan.FromMinutes(1)
+        };
+    });
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiResponseFilter>();
+    options.Filters.Add<ValidationFilter>();
+})
+.ConfigureApiBehaviorOptions(options =>
+{
+    // Importante: para que el ValidationFilter sea el que responda,
+    // deshabilita el filtro automático de ModelState
+    options.SuppressModelStateInvalidFilter = true;
 });
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 

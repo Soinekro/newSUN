@@ -1,83 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HumanResource.Aplication.DTOs.Request;
+using HumanResource.Aplication.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
-namespace HumanResource.API.Controllers
+namespace HumanResource.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController(IEmployeeService employeeService) : ControllerBase
 {
-    public class EmployeeController : Controller
+    private readonly IEmployeeService _employeeService = employeeService;
+    // GET: EmployeeController/Create
+
+    [HttpPost("create")]
+    [Authorize]
+    public async Task<IActionResult> CreateEmploye([FromBody, Required] EmployeeRequest request)
     {
-        // GET: EmployeeController
-        public ActionResult Index()
+        var response = await _employeeService.CreateAsync(request);
+        if (response.IsSuccess)
         {
-            return View();
+            return Ok(response);
         }
+        return BadRequest(response);
 
-        // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: EmployeeController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: EmployeeController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: EmployeeController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: EmployeeController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: EmployeeController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: EmployeeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
+
 }

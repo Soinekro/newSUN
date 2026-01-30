@@ -1,10 +1,10 @@
-using AuthService.API.Filters;
 using AuthService.Application.Interfaces;
 using AuthService.Domain.Interfaces;
 using AuthService.Infrastructure.Persistence;
 using AuthService.Infrastructure.Repositories;
 using AuthService.Infrastructure.Security;
 using AuthService.Infrastructure.Services;
+using CommonClass.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -66,10 +66,14 @@ if (!string.IsNullOrEmpty(key))
 
 builder.Services.AddControllers(options =>
 {
-    // Filtro global para respuestas BaseResponse
     options.Filters.Add<ApiResponseFilter>();
-    // Filtro global para errores de validación
     options.Filters.Add<ValidationFilter>();
+})
+.ConfigureApiBehaviorOptions(options =>
+{
+    // Importante: para que el ValidationFilter sea el que responda,
+    // deshabilita el filtro automático de ModelState
+    options.SuppressModelStateInvalidFilter = true;
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
