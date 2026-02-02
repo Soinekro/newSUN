@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "SunExpert Team",
+  "classifications": ["SunExpert", "CRUD"],
+  "name": "SunExpert Clean CRUD Generator",
+  "identity": "SunExpert.CleanCrud",
+  "groupIdentity": "SunExpert",
+  "shortName": "sun-crud",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "__Entity__",
+  "preferNameDirectory": false,
+  "symbols": {
+    "ModuleName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Nombre del Modulo (ej: HumanResource, Security)",
+      "defaultValue": "HumanResource",
+      "replaces": "__Module__",
+      "fileRename": "__Module__"
+    }
+  }
+}
