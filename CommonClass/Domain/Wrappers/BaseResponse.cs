@@ -1,4 +1,4 @@
-﻿namespace CommonClass.Response
+﻿namespace CommonClass.Domain.Wrappers
 {
     /// <summary>
     /// Representa una respuesta base genérica para todas las respuestas de la API.

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace CommonClass.Querying;
+namespace CommonClass.Infrastructure.Persistence.Extensions;
 
 public static class ApiQueryExtensions
 {
@@ -67,8 +67,8 @@ public static class ApiQueryExtensions
                 continue;
 
             ordered = ordered is null
-                ? (desc ? query.OrderByDescending(selector) : query.OrderBy(selector))
-                : (desc ? ordered.ThenByDescending(selector) : ordered.ThenBy(selector));
+                ? desc ? query.OrderByDescending(selector) : query.OrderBy(selector)
+                : desc ? ordered.ThenByDescending(selector) : ordered.ThenBy(selector);
         }
 
         return ordered ?? query;

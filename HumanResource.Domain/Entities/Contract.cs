@@ -1,7 +1,4 @@
-﻿
-
-
-using CommonClass.Class;
+﻿using CommonClass.Domain.Entities;
 
 namespace HumanResource.Domain.Entities;
 public class Contract : BaseAuditableClass

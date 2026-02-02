@@ -1,10 +1,5 @@
-﻿using CommonClass.Querying;
+﻿using CommonClass.Domain.Interfaces;
 using HumanResource.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResource.Domain.Interfaces;
-public interface IContractRepository
-{
-    Task<Contract> CreateAsync(Contract contract);
-    Task<Contract?> GetContract(int contractId, ApiQuerySpec query);
-}
+public interface IContractRepository : IBaseRepository<Contract> { }

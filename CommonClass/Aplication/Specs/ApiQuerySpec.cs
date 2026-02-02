@@ -1,4 +1,4 @@
-﻿namespace CommonClass.Querying;
+﻿namespace CommonClass.Aplication.Specs;
 
 public sealed class ApiQuerySpec
 {

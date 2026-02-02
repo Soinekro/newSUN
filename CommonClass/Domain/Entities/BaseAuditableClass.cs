@@ -1,4 +1,4 @@
-﻿namespace CommonClass.Class
+﻿namespace CommonClass.Domain.Entities
 {
     public abstract class BaseAuditableClass
     {

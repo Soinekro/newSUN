@@ -1,5 +1,5 @@
-using CommonClass.Filters;
-using CommonClass.Response;
+using CommonClass.API.Filters;
+using CommonClass.Domain.Wrappers;
 using HumanResource.Aplication.Interfaces;
 using HumanResource.Aplication.Services;
 using HumanResource.Domain.Interfaces;

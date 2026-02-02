@@ -2,7 +2,7 @@ using AuthService.Application.DTOs;
 using AuthService.Application.Interfaces;
 using AuthService.Domain.Entities;
 using AuthService.Domain.Interfaces;
-using CommonClass.Response;
+using CommonClass.Domain.Wrappers;
 
 namespace AuthService.Application.Services;
 

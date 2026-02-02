@@ -1,34 +1,19 @@
-﻿using CommonClass.Querying;
+﻿using CommonClass.Infrastructure.Persistence.Repositories;
 using HumanResource.Domain.Entities;
 using HumanResource.Domain.Interfaces;
 using HumanResource.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace HumanResource.Infrastructure.Repositories;
-public class ContractRepository(HumanResourceDbContext context) : IContractRepository
+public class ContractRepository(HumanResourceDbContext context)
+    : BaseRepository<Contract, HumanResourceDbContext>(context), IContractRepository
 {
-    private readonly HumanResourceDbContext _context = context;
-
-    public async Task<Contract> CreateAsync(Contract contract)
+    // Solo defines la "Lista Blanca" de includes
+    protected override Dictionary<string, Func<IQueryable<Contract>, IQueryable<Contract>>> AllowedIncludes => new(StringComparer.OrdinalIgnoreCase)
     {
-        _context.Contracts.Add(contract);
-        await _context.SaveChangesAsync();
-        return contract;
-    }
+        ["employee"] = q => q.Include(c => c.Employee)
+    };
 
-    public async Task<Contract?> GetContract(int contractId, ApiQuerySpec query)
-    {
-        var allowedIncludes = new Dictionary<string, Func<IQueryable<Contract>, IQueryable<Contract>>>(StringComparer.OrdinalIgnoreCase)
-        {
-            ["employee"] = q => q.Include(x => x.Employee),
-
-        };
-
-        IQueryable<Contract> contract = _context.Contracts
-            .AsNoTracking()
-            .Where(c => c.CtrId == contractId)
-            .ApplyIncludes(query.Relations, allowedIncludes);
-
-        return await contract.SingleOrDefaultAsync();
-    }
+    // Si tuvieras métodos personalizados extra, van aquí.
+    // GetAll, GetById, Create, etc., ya vienen heredados.
 }

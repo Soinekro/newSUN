@@ -1,9 +1,9 @@
-using CommonClass.Response;
+using CommonClass.Domain.Wrappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Reflection;
 
-namespace CommonClass.Filters;
+namespace CommonClass.API.Filters;
 
 /// <summary>
 /// Filtro que unifica la conversión de objetos `BaseResponse` a `IActionResult` usando el `StatusCode` dentro del response.

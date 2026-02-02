@@ -1,4 +1,4 @@
-﻿namespace CommonClass.Response;
+﻿namespace CommonClass.Domain.Wrappers;
 
 public class PagedResult<T>
 {

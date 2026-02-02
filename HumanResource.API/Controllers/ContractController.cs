@@ -1,38 +1,16 @@
-using CommonClass.Querying;
+using CommonClass.API.Controllers;
+using HumanResource.Aplication.DTOs.Request;
+using HumanResource.Aplication.DTOs.Responses;
 using HumanResource.Aplication.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+using HumanResource.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResource.API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class ContractController(IContractService employeeService) : ControllerBase
+    public class ContractController(IContractService service)
+    : BaseController<Contract, ContractResponse, ContractRequest, ContractRequest>(service)
     {
-        private readonly IContractService _contractService = employeeService;
-
-        [HttpPost("create")]
-        [Authorize]
-        public async Task<IActionResult> CreateContract([FromBody] Aplication.DTOs.Request.ContractRequest request)
-        {
-            var response = await _contractService.CreateAsync(request);
-            if (response.IsSuccess)
-            {
-                return Ok(response);
-            }
-            return BadRequest(response);
-        }
-
-        [HttpGet("{contractId}")]
-        [Authorize]
-        public async Task<IActionResult> GetContract([FromRoute] int contractId, [FromQuery] ApiQuerySpec query)
-        {
-            var response = await _contractService.GetContract(contractId,query);
-            if (response.IsSuccess)
-            {
-                return Ok(response);
-            }
-            return BadRequest(response);
-        }
+        // ¡Listo! Ya tienes GetAll (paginado/filtros), GetById, Create, Update, Delete.
     }
 }

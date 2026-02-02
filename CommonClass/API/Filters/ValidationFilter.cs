@@ -1,8 +1,8 @@
-using CommonClass.Response;
+using CommonClass.Domain.Wrappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace CommonClass.Filters;
+namespace CommonClass.API.Filters;
 
 /// <summary>
 /// Filtro global que intercepta errores de validación de modelo y devuelve un BaseResponse estandarizado.
@@ -19,7 +19,7 @@ public sealed class ValidationFilter : IActionFilter
                 kvp => kvp.Key.Split('.').Last(),
                 kvp => kvp.Value!.Errors
                     .Select(e => string.IsNullOrWhiteSpace(e.ErrorMessage)
-                        ? (e.Exception?.Message ?? "Valor inválido")
+                        ? e.Exception?.Message ?? "Valor inválido"
                         : e.ErrorMessage)
                     .ToArray()
             );

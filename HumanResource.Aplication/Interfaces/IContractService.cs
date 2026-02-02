@@ -1,13 +1,9 @@
-﻿using CommonClass.Querying;
-using CommonClass.Response;
+﻿using CommonClass.Aplication.Interfaces;
 using HumanResource.Aplication.DTOs.Request;
 using HumanResource.Aplication.DTOs.Responses;
+using HumanResource.Domain.Entities;
 
 namespace HumanResource.Aplication.Interfaces
 {
-    public partial interface IContractService
-    {
-        Task<BaseResponse<ContractResponse>> CreateAsync(ContractRequest request);
-        Task<BaseResponse<ContractResponse>> GetContract(int contractId, ApiQuerySpec query);
-    }
+    public interface IContractService : IBaseService<Contract, ContractResponse, ContractRequest, ContractRequest> { }
 }

@@ -1,4 +1,4 @@
-﻿using CommonClass.Querying;
+﻿using CommonClass.Aplication.Specs;
 using HumanResource.Aplication.DTOs.Responses;
 using HumanResource.Domain.Entities;
 

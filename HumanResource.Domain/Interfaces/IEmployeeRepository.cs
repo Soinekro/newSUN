@@ -1,12 +1,8 @@
 ﻿
-using CommonClass.Querying;
-using CommonClass.Response;
+using CommonClass.Domain.Interfaces;
 using HumanResource.Domain.Entities;
 
 namespace HumanResource.Domain.Interfaces;
-public interface IEmployeeRepository
+public interface IEmployeeRepository : IBaseRepository<Employee>
 {
-    Task<PagedResult<Employee>> GetAllAsync(ApiQuerySpec query);
-    Task<Employee> CreateAsync(Employee contract);
-    Task<Employee?> GetEmployee(int employeeId, ApiQuerySpec query);
 }
