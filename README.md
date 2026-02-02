@@ -1,4 +1,4 @@
-﻿https://documenter.getpostman.com/view/47393821/2sBXVo8nuc#df965836-5261-4f3c# SunExpert 2.0 API
+﻿SunExpert 2.0 API
 
 Documentación del proyecto SunExpert 2.0, una suite de microservicios desarrollada con .NET 9 y Clean Architecture.
 
@@ -48,7 +48,9 @@ Para generar un nuevo CRUD (Controller, Service, Repository, DTOs, Mapper, Entit
 *(Esto creará `AttendanceController`, `AttendanceService`, `AttendanceRepository`, etc., en las carpetas correspondientes de los proyectos `HumanResource.*`)*.
 
 **Crear una entidad `Role` en el módulo `Security`:**
-
+```
+dotnet new sun-crud -n Role --ModuleName Security
+```
 ---
 
 ## 🛠 Desarrollo
