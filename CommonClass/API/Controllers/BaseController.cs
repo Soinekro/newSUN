@@ -1,5 +1,5 @@
-﻿using CommonClass.Aplication.Interfaces;
-using CommonClass.Aplication.Specs;
+﻿using CommonClass.Application.Interfaces;
+using CommonClass.Application.Specs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

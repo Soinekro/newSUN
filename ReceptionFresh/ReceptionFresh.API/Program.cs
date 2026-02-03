@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using __Module__.Application.Interfaces;
-using __Module__.Application.Services;
-using __Module__.Domain.Interfaces;
-using __Module__.Infrastructure.Persistence.Context;
-using __Module__.Infrastructure.Repositories;
+using ReceptionFresh.Application.Interfaces;
+using ReceptionFresh.Application.Services;
+using ReceptionFresh.Domain.Interfaces;
+using ReceptionFresh.Infrastructure.Persistence.Context;
+using ReceptionFresh.Infrastructure.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,12 +21,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // TODO: Registrar DbContext del módulo aquí
-builder.Services.AddDbContext<__Module__DbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("__Module__Connection")));
+builder.Services.AddDbContext<ReceptionFreshDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ReceptionFreshConnection")));
 
 // Registrar repositorios y servicios del módulo aquí
-// builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-// builder.Services.AddScoped<IRoleService, RoleService>();
+ builder.Services.AddScoped<IPalletRepository, PalletRepository>();
+ builder.Services.AddScoped<IPalletService, PalletService>();
 
 
 

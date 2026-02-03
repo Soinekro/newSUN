@@ -1,4 +1,4 @@
-﻿using CommonClass.Aplication.Specs;
+﻿using CommonClass.Application.Specs;
 using CommonClass.Domain.Entities;
 using CommonClass.Domain.Interfaces;
 using CommonClass.Domain.Wrappers;

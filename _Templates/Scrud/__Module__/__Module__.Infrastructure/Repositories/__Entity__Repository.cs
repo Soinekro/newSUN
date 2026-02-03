@@ -1,8 +1,7 @@
 using CommonClass.Infrastructure.Persistence.Repositories;
 using __Module__.Domain.Entities;
 using __Module__.Domain.Interfaces;
-using __Module__.Infrastructure.Persistence; // Asume que aquí está el DbContext
-using Microsoft.EntityFrameworkCore;
+using __Module__.Infrastructure.Persistence.Context; // Asume que aquí está el DbContext
 using System.Linq.Expressions;
 
 namespace __Module__.Infrastructure.Repositories;

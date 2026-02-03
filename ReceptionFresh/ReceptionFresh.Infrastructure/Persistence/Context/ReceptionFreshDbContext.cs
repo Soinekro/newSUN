@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace __Module__.Infrastructure.Persistence.Context;
+namespace ReceptionFresh.Infrastructure.Persistence.Context;
 
 // ✅ Este define el constructor primario y llama a la base
-public partial class __Module__DbContext(DbContextOptions<__Module__DbContext> options) : DbContext(options)
+public partial class ReceptionFreshDbContext(DbContextOptions<ReceptionFreshDbContext> options) : DbContext(options)
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

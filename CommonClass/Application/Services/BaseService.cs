@@ -1,10 +1,10 @@
-﻿using CommonClass.Aplication.Interfaces;
-using CommonClass.Aplication.Specs;
+﻿using CommonClass.Application.Interfaces;
+using CommonClass.Application.Specs;
 using CommonClass.Domain.Entities;
 using CommonClass.Domain.Interfaces;
 using CommonClass.Domain.Wrappers;
 
-namespace CommonClass.Aplication.Services;
+namespace CommonClass.Application.Services;
 
 public abstract class BaseService<TEntity, TResponse, TCreateRequest, TUpdateRequest>(
     IBaseRepository<TEntity> repository

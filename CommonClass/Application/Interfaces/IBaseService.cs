@@ -1,7 +1,7 @@
-﻿using CommonClass.Aplication.Specs;
+﻿using CommonClass.Application.Specs;
 using CommonClass.Domain.Wrappers;
 
-namespace CommonClass.Aplication.Interfaces;
+namespace CommonClass.Application.Interfaces;
 public interface IBaseService<TEntity, TResponse, TCreateRequest, TUpdateRequest>
 {
     Task<BaseResponse<PagedResult<TResponse>>> GetAllAsync(ApiQuerySpec query);
