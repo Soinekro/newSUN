@@ -34,7 +34,9 @@ Para instalar la plantilla en tu entorno local (solo se hace una vez o al actual
 
 1. Abre una terminal en la raíz de la solución (`sunExpert2.0`).
 2. Ejecuta el siguiente comando:
-
+```
+dotnet new s-module Security
+```
 ### 2. Uso: Crear una Nueva Entidad
 Para generar un nuevo CRUD (Controller, Service, Repository, DTOs, Mapper, Entity, Interfaces) dentro de un módulo existente:
 
@@ -49,7 +51,7 @@ Para generar un nuevo CRUD (Controller, Service, Repository, DTOs, Mapper, Entit
 
 **Crear una entidad `Role` en el módulo `Security`:**
 ```
-dotnet new sun-crud -n Role --ModuleName Security
+dotnet new sun-crud -E Role --ModuleName Security
 ```
 ---
 
