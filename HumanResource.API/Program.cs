@@ -102,9 +102,6 @@ builder.Services.AddControllers(options =>
     // deshabilita el filtro automático de ModelState
     options.SuppressModelStateInvalidFilter = true;
 });
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 // --- Pipeline de Middlewares ---

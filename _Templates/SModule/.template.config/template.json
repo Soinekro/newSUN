@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Soinekro",
+  "name": "Soinekro New Microservice Module",
+  "identity": "Soinekro.NewModule",
+  "shortName": "s-module",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "__Module__",
+  "preferNameDirectory": true
+}

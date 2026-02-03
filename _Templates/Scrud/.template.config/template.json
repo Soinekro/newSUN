@@ -1,11 +1,11 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "SunExpert Team",
-  "classifications": ["SunExpert", "CRUD"],
-  "name": "SunExpert Clean CRUD Generator",
-  "identity": "SunExpert.CleanCrud",
-  "groupIdentity": "SunExpert",
-  "shortName": "sun-crud",
+  "author": "Soinekro",
+  "classifications": ["Soinekro", "CRUD"],
+  "name": "Soinekro Clean CRUD Generator",
+  "identity": "Soinekro.CleanCrud",
+  "groupIdentity": "Soinekro",
+  "shortName": "s-crud",
   "tags": {
     "language": "C#",
     "type": "item"
@@ -13,13 +13,23 @@
   "sourceName": "__Entity__",
   "preferNameDirectory": false,
   "symbols": {
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Nombre de la entidad (ej: Pallet, User)",
+      "defaultValue": "Entity",
+      "replaces": "__Entity__",
+      "fileRename": "__Entity__",
+      "shortName": "E"
+    },
     "ModuleName": {
       "type": "parameter",
       "datatype": "string",
       "description": "Nombre del Modulo (ej: HumanResource, Security)",
       "defaultValue": "HumanResource",
       "replaces": "__Module__",
-      "fileRename": "__Module__"
+      "fileRename": "__Module__",
+      "shortName": "M"
     }
   }
 }
